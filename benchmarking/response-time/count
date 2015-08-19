@@ -1,2 +1,0 @@
-#/bin/bash
-mysql -D metadata -e "select count(id) as samples from results" 

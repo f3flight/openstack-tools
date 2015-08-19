@@ -1,2 +1,0 @@
-#/bin/bash
-mysql -D metadata -e "select * from results where responce_time >= $1 order by timestamp, nanos" 
