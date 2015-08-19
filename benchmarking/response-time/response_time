@@ -1,0 +1,11 @@
+#/bin/bash
+if [ $# -ne 2 ]
+then
+	echo "usage: resoponse_time <request script name> <sleep time>"
+else
+	while true
+	do
+		./$1 &
+		sleep $2
+	done
+fi

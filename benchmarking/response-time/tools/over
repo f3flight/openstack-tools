@@ -1,0 +1,2 @@
+#/bin/bash
+mysql -D metadata -e "select bad.r/count(results.id)*100 as 'over $1 sec, %' from results join (select count(id) as r from results where responce_time >= $1) as bad"

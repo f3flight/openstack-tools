@@ -1,0 +1,2 @@
+#/bin/bash
+mysql -D metadata -e "select * from results order by id desc limit 1" 
