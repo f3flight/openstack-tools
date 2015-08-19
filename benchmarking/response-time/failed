@@ -1,0 +1,2 @@
+#/bin/bash
+mysql -D metadata -e "select count(id) from results where error = true"

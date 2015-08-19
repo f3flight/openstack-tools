@@ -1,0 +1,2 @@
+#/bin/bash
+mysql -D metadata -e "select * from results join (select max(responce_time) as rt from results) as worst on results.responce_time = worst.rt" 
