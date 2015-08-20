@@ -1,0 +1,2 @@
+#/bin/bash
+mysql -D metadata -e "select count(bad.r)/10 as 'over $1 sec, %' from (select l.id as r from (select id, responce_time from results order by id desc limit 1000) as l where l.responce_time >= $1) as bad"
