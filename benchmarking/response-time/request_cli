@@ -1,4 +1,6 @@
 #/bin/bash
+pushd $(dirname $0) > /dev/null
+. ./.config
 source ~/openrc
 TIME=`date +%Y%m%d%H%M%S.%N`
 T1=`date +%s.%N`
@@ -8,4 +10,16 @@ T2=`date +%s.%N`
 SQLTIME=`echo $TIME | cut -c 1-14`
 NANOS=`echo $TIME | cut -c 16-`
 RESPTIME=`bc<<<"$T2-$T1" | sed s/^\\\./0./`
-mysql -D metadata -e "insert into results (timestamp, nanos, responce_time, error) values('$SQLTIME', '$NANOS', '$RESPTIME', '$ERROR')"
+mysql -D $DB_NAME -e "insert into $TBL_NAME ( \
+	request_timestamp, \
+	request_nanos, \
+	response_latency, \
+	response_timestamp, \
+	response_nanos, \
+	error) values ( \
+	'$SQLTIME', \
+	'$NANOS', \
+	'$RESPTIME', \
+	'NOW()', \
+	'0', \
+	'$ERROR')"

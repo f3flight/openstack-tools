@@ -1,4 +1,5 @@
 #/bin/bash
+pushd $(dirname $0) > /dev/null
 if [ $# -ne 2 ]
 then
 	echo "usage: resoponse_time <request script name> <sleep time>"

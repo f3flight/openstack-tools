@@ -1,0 +1,27 @@
+#/bin/bash
+pushd $(dirname $0) > /dev/null
+. ./.config
+if [ "$1" != "" ]
+then
+	printf "Drop current database '$DB_NAME' (to clean up, lose results)? Type 'y' to drop, anything else to keep: "
+	read ANSWER
+	if [ "$ANSWER" == "y" ]
+	then
+		mysql -e "drop database $DB_NAME"
+	fi
+        sed -i "s/DB_NAME=.*/DB_NAME='$1'/" ./.config
+        DB_NAME="$1"
+fi
+
+mysql -e "create database $DB_NAME"
+if [ "$?" -ne 0 ]
+then
+	printf "Most likely the database '$DB_NAME' already exists. Drop and create a new one? Type 'y' to drop, anything else to keep: "
+	read ANSWER
+        if [ "$ANSWER" == "y" ]
+        then
+                mysql -e "drop database $DB_NAME"
+        fi
+fi
+mysql -e "create database $DB_NAME"
+./create_table

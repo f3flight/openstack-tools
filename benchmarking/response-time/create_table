@@ -1,0 +1,42 @@
+#/bin/bash
+pushd $(dirname $0) > /dev/null
+. ./.config
+if [ "$1" != "" ]
+then
+        printf "Drop current table '$TBL_NAME' (to clean up, lose results)? Type 'y' to drop, anything else to keep: "
+        read ANSWER
+        if [ "$ANSWER" == "y" ]
+        then
+                mysql -D $DB_NAME -e "drop table $TBL_NAME"
+        fi
+	sed -i "s/TBL_NAME=.*/TBL_NAME='$1'/" ./.config
+	TBL_NAME="$1"
+fi
+
+mysql -D $DB_NAME -e "create table $TBL_NAME \
+	( id INT NOT NULL AUTO_INCREMENT, \
+	request_timestamp DATETIME, \
+	request_nanos INT, \
+	response_latency DOUBLE, \
+	response_timestamp DATETIME, \
+	response_nanos INT, \
+	error BOOLEAN, \
+	PRIMARY KEY (id) )"
+if [ "$?" -ne 0 ]
+then
+	printf "Most likely the table '$TBL_NAME' already exists. Drop and recreate? Type 'y' to drop, anything else to keep: "
+        read ANSWER
+        if [ "$ANSWER" == "y" ]
+        then
+                mysql -D $DB_NAME -e "drop table $TBL_NAME"
+		mysql -D $DB_NAME -e "create table $TBL_NAME \
+ 		       ( id INT NOT NULL AUTO_INCREMENT, \
+		        request_timestamp DATETIME, \
+		        request_nanos INT, \
+		        response_latency DOUBLE, \
+		        response_timestamp DATETIME, \
+		        response_nanos INT, \
+		        error BOOLEAN, \
+		        PRIMARY KEY (id) )"
+        fi
+fi

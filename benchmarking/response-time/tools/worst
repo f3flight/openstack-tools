@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "select * from results join (select max(responce_time) as rt from results) as worst on results.responce_time = worst.rt" 
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "select * from $TBL_NAME join (select max(response_latency) as rt from $TBL_NAME) as worst on $TBL_NAME.response_latency = worst.rt" 

@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "delete from results" 
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "delete from $TBL_NAME" 

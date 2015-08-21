@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "select count(bad.r)/10 as 'over $1 sec, %' from (select l.id as r from (select id, responce_time from results order by id desc limit 1000) as l where l.responce_time >= $1) as bad"
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "select count(bad.r)/10 as 'over $1 sec, %' from (select l.id as r from (select id, response_latency from $TBL_NAME order by id desc limit 1000) as l where l.response_latency >= $1) as bad"

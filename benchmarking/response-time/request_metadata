@@ -1,4 +1,6 @@
 #/bin/bash
+pushd $(dirname $0) > /dev/null
+. ./.config
 TIME=`date +%Y%m%d%H%M%S.%N`
 T1=`date +%s.%N`
 METADATA=`curl http://169.254.169.254/2009-04-04/meta-data/instance-id 2> /dev/null`
@@ -12,4 +14,4 @@ else
 	ERROR=1
 fi
 RESPTIME=`bc<<<"$T2-$T1" | sed s/^\\\./0./`
-mysql -D metadata -e "insert into results (timestamp, nanos, responce_time, error) values('$SQLTIME', '$NANOS', '$RESPTIME', '$ERROR')"
+mysql -D $DB_NAME -e "insert into results (timestamp, nanos, responce_time, error) values('$SQLTIME', '$NANOS', '$RESPTIME', '$ERROR')"

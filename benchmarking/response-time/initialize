@@ -1,0 +1,5 @@
+#/bin/sh
+pushd $(dirname $0) > /dev/null
+echo "export DB_NAME='bench_resptime'" > ./.config
+echo "export TBL_NAME='results'" >> ./.config
+./create_database

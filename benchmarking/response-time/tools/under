@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "select good.r/count(results.id)*100 as 'under $1 sec, %' from results join (select count(id) as r from results where responce_time < $1) as good"
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "select good.r/count($TBL_NAME.id)*100 as 'under $1 sec, %' from $TBL_NAME join (select count(id) as r from $TBL_NAME where response_latency < $1) as good"

@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "select * from results order by id limit 1" 
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "select * from $TBL_NAME order by id limit 1" 

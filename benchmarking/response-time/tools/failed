@@ -1,2 +1,4 @@
 #/bin/bash
-mysql -D metadata -e "select count(id) from results where error = true"
+pushd $(dirname $0) > /dev/null
+. ../.config
+mysql -D $DB_NAME -e "select count(id) from $TBL_NAME where error = true"
