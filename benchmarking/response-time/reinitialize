@@ -1,0 +1,5 @@
+#/bin/bash
+pushd $(dirname $0) > /dev/null
+. ./.config
+mysql -e "drop database $DB_NAME"
+./create_database

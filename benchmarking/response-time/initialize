@@ -1,5 +1,16 @@
 #/bin/sh
 pushd $(dirname $0) > /dev/null
+. ./.config
+mysql -D $DB_NAME -e "show tables;" &> /dev/null
+if [ "$?" -eq 0 ]
+then
+	printf "Previous database '$DB_NAME' is present and may contain data - delete it to clean up? Type 'y' to drop, anything else to keep: "
+	read INPUT
+	if [ "$INPUT" == "y" ]
+	then
+		./drop_database
+	fi
+fi
 
 if [ "$#" -gt 2 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]
 then
