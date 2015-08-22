@@ -21,7 +21,7 @@ then
         if [ "$ANSWER" == "y" ]
         then
                 mysql -e "drop database $DB_NAME"
+		mysql -e "create database $DB_NAME"
         fi
 fi
-mysql -e "create database $DB_NAME"
 ./create_table
