@@ -1,0 +1,1 @@
+- monitor-rabbitmq-queue.sh - monitor queue size and collector count for a given queue. Usage: `./monitor-rabbitmq-sample-queue.sh queue-name > results.txt`
