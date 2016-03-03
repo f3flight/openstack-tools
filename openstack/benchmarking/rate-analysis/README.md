@@ -1,0 +1,1 @@
+- per-minute.sh - prints per-minute rate for a given log. Expects log lines to start with "YYYY-mm-dd HH:mm...". Usage: `./per-minute.sh < log-file.log`

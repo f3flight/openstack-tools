@@ -1,2 +1,4 @@
-- monitor-rabbitmq-queue.sh - monitor queue size and collector count for a given queue. Usage: `./monitor-rabbitmq-sample-queue.sh queue-name > results.txt`
-- rabbitmq-metering-queue-details.sh - monitor queue publish and deliver rate. Usage: `./rabbitmq-metering-queue-details.sh rabbitmq-password queue-name > results.txt`
+- dump-messages.sh - dump messages json from a given queue. Usage: `./dump-messages.sh rabbitmq-password queue-name max-amount-of-messages-to-dump`. Example: `./dump-messages.sh thePass metering.sample 1000 > messages_dump.json`
+- parse-messages-dump.sh - parse json dump of messages (dumped with `dump-messages.sh` or by other means) into a json array of payloads - actual message contents - for further analysis. Usage: `./parse-messages-dump.sh < messages_dump.json`. Example: `./parse-messages-dump.sh < messages_dump.json | json_pp | less`
+- monitor-rabbitmq-queue.sh - monitor queue size and collector count for a given queue. Usage: `./monitor-rabbitmq-sample-queue.sh queue-name`
+- rabbitmq-metering-queue-details.sh - monitor queue publish and deliver rate. Usage: `./rabbitmq-metering-queue-details.sh rabbitmq-password queue-name`

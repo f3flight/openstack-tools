@@ -1,0 +1,1 @@
+- alarm-mon.sh - monitor alarms grepped by provided string (for ex. grepped by stack name) for "insufficient_data" status - shows count of such alarms. Usage "./alarm-mon.sh grep-string > results.txt`

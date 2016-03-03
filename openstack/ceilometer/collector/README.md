@@ -1,1 +1,1 @@
-- parse-delays.sh - requires DEBUG logging. Usage: `./parse-delays.sh /var/log/ceilometer/ceilometer-collector.log > results.txt`
+- parse-delays.sh - requires DEBUG logging. Shows delay for each processed sample, along with sample timestamp. Usage: `./parse-delays.sh /var/log/ceilometer/ceilometer-collector.log > results.txt`
