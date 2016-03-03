@@ -1,1 +1,2 @@
 - monitor-rabbitmq-queue.sh - monitor queue size and collector count for a given queue. Usage: `./monitor-rabbitmq-sample-queue.sh queue-name > results.txt`
+- rabbitmq-metering-queue-details.sh - monitor queue publish and deliver rate. Usage: `./rabbitmq-metering-queue-details.sh rabbitmq-password queue-name > results.txt`
