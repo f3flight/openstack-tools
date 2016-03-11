@@ -1,0 +1,1 @@
+- get-last-minute-data.sh - print objects with timestamp greater than now minus 60 seconds. Output is pretty-printed json. Usage: `./get-last-minute-data.sh <mongo-password> <database> <collection>`. Example: `./get-last-minute-data.sh mypassword ceilometer meter > results.json`
