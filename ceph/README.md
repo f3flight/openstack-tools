@@ -1,0 +1,1 @@
+rbd-loc.sh, rbd-loc-fast.sh - locate image's objects inside CEPH pool. Usage: `./rbd-loc-fast.sh <pool> <object-name>`. "Fast" version works faster by not using `rados ls` but can become incompatible if object naming convention changes and also may not work for very small images which consist of only one object (not tested).
